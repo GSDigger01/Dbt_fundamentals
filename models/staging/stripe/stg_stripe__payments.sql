@@ -4,5 +4,5 @@ select
     paymentmethod,
     status,
     amount,
-    created
+    created as _etl_loaded_at
 from {{ source('stripe', 'payment') }}
