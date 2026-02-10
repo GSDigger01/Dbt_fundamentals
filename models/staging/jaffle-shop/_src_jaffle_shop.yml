@@ -1,0 +1,27 @@
+sources:
+  - name: jaffle_shop
+    database: raw  
+    schema: jaffle_shop  
+    description: this is a clone of a snowflake database
+    tables:
+      - name: orders
+        description: raw orders data
+        columns:
+          - name: id
+            description: primary key for order data
+            tests:
+              - unique
+              - not_null
+              
+      - name: customers
+        description: raw customers data
+        columns:
+          - name: id 
+            description: primary key for customers data
+            data_tests:
+              - unique
+              - not_null
+              
+              
+
+  

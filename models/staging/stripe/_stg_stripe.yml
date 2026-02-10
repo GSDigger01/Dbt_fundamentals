@@ -1,0 +1,31 @@
+
+models:
+  - name: stg_stripe__payments
+    description: >
+      Paiements Stripe nettoyés et standardisés.
+      Un paiement est identifié de manière unique par la combinaison
+      (order_id, payment_id).
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - order_id
+            - payment_id
+
+    columns:
+      - name: order_id
+        description: "Identifiant de la commande associée au paiement."
+        tests:
+          - not_null
+
+      - name: payment_id
+        description: "Identifiant unique du paiement Stripe."
+        tests:
+          - not_null
+
+      - name: status
+        description: "Statut du paiement."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["success", "fail"]
